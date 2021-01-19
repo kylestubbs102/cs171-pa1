@@ -5,9 +5,9 @@ import time
 import threading
 
 HOST = 'localhost'
-PORT = 5000
-DRIFT = .5
-MAX_DIFFERENCE = 5
+PORT = int(sys.argv[1])
+DRIFT = float(sys.argv[2])
+MAX_DIFFERENCE = float(sys.argv[3])
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 current_time = datetime.now()

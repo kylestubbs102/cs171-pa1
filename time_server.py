@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 import time
 
 HOST = 'localhost'
-PORT = 5000
-DELAY = 3
+PORT = int(sys.argv[1])
+DELAY = float(sys.argv[2])
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.bind((HOST, PORT))
