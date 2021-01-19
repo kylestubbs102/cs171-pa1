@@ -1,5 +1,5 @@
 import socket
-import sys
+import sys, os
 from datetime import date, datetime, timedelta
 import time
 import threading
@@ -13,6 +13,16 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 current_time = datetime.now()
 
 # diff thread for input if time
+def time_thread():
+    while True:
+        userInput = input()
+        if(userInput == "time"):
+            hour, minute, second = str(current_time.time()).split(":")
+            # temp, hour = hour.split(" ")
+            print("Current time is: ","\nsecond: ", second, "\nminute: ", minute, "\nhour: ", hour, flush=True)
+        elif (userInput == "exit"):
+            # sock.close()
+            os._exit(1)
 
 def clock_drift():
     global current_time
@@ -70,6 +80,8 @@ def Main():
     thread2 = threading.Thread(target=clock_drift)
     thread1.start()
     thread2.start()
+    thread3 = threading.Thread(target=time_thread)
+    thread3.start()
 
 if __name__ == '__main__':
     Main()
