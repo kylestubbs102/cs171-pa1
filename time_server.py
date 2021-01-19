@@ -4,7 +4,7 @@ import threading
 from datetime import datetime, timedelta
 import time
 
-HOST = 'localhost'
+HOST = '127.0.0.1'
 PORT = int(sys.argv[1])
 DELAY = float(sys.argv[2])
 

@@ -4,7 +4,7 @@ from datetime import date, datetime, timedelta
 import time
 import threading
 
-HOST = 'localhost'
+HOST = '127.0.0.1'
 PORT = int(sys.argv[1])
 DRIFT = float(sys.argv[2])
 MAX_DIFFERENCE = float(sys.argv[3])
@@ -36,7 +36,7 @@ def call_server():
     current_time += timedelta(seconds=second)
 
     while True:
-        time.sleep(MAX_DIFFERENCE/(2 * DRIFT))
+        time.sleep(MAX_DIFFERENCE/(2 * abs(DRIFT)))
 
         hour, minute, second = str(current_time.time()).split(":")
         hour = int(hour)
