@@ -5,9 +5,9 @@ import time
 import threading
 
 HOST = '127.0.0.1'
-MAX_DIFFERENCE = int(sys.argv[1])
+MAX_DIFFERENCE = float(sys.argv[1])
 DRIFT = float(sys.argv[2])
-PORT = float(sys.argv[3])
+PORT = int(sys.argv[3])
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 current_time = datetime.now()
@@ -22,6 +22,10 @@ def clock_drift():
 
 def call_server():
     global current_time
+
+    hour0 = datetime.today().hour
+    minute0 = datetime.today().minute
+    second0 = datetime.today().second
 
     sock.send("request".encode())
     serverTime = sock.recv(1024).decode()
@@ -46,6 +50,9 @@ def call_server():
         print("time before update is:","\nsecond: ", second1, "\nminute: ", minute1, "\nhour: ", hour1, flush=True)
         sock.send("request".encode())
         serverTime = sock.recv(1024).decode()
+
+        temp0, temp1, tempSeconds = str(datetime.now().time()).split(":")
+        # TT
 
         hour, minute, second = str(serverTime).split(":")
         # temp, hour = hour.split(" ")

@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 import time
 
 HOST = '127.0.0.1'
-PORT = int(sys.argv[1])
-DELAY = float(sys.argv[2])
+DELAY = float(sys.argv[1])
+PORT = int(sys.argv[2])
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.bind((HOST, PORT))
@@ -20,7 +20,8 @@ def handle_client(conn, addr):
         clientMessage = conn.recv(1024).decode()
 
         time.sleep(DELAY)
-
+        
+        # current_time = str(datetime.now().time())
         hour, minute, second = str(datetime.now()).split(":")
         temp, hour = hour.split(" ")
         print("Server connected to " + str(addr),"\nsecond: ", second, "\nminute: ", minute, "\nhour: ", hour, flush=True)
